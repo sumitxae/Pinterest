@@ -11,7 +11,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'posts'
   }],
-  dp: String,
+  info: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'profile'
+  }],
   email: String
 })
 

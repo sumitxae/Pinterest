@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userModel = require('./users');
 const postModel = require('./posts');
+const infoModel = require('./profile');
 const passport = require('passport');
 const upload = require('./multer');
 const localStrategy = require('passport-local').Strategy;
@@ -22,12 +23,19 @@ router.post('/register', (req, res, next) => {
     email: req.body.email,
     dp: req.body.dp,
   })
-  userModel.register(user, req.body.password)
+  const info = new infoModel({
+    user: user._id
+  })
+  user.info.push(info._id);
+  info.save()
+  .then(()=>{
+    userModel.register(user, req.body.password)
     .then(function (u) {
       passport.authenticate('local')(req, res, () => {
         res.redirect('/feed');
       })
     })
+  })
 });
 
 router.post('/login', passport.authenticate('local', {
@@ -43,7 +51,8 @@ router.get('/feed', isLoggedIn, (req, res, next)=>{
 
 router.get('/profile', isLoggedIn, async (req, res, next)=>{
   const user = await userModel.findOne({username:req.session.passport.user})
-  res.render('profile',{user})
+  const userInfo = await infoModel.findOne({_id: user.info})
+  res.render('profile',{user, userInfo})
 })
 
 router.get('/logout', function(req, res, next){
