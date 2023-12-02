@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+    <body class="selection" >
+        <div id="main" class="container h-screen w-screen relative">
+            <div id="hero" class="h-full p-5 md:px-10 w-screen md:mx-auto max-w-5xl ">
+                <nav>
+                    <p class="text-2xl md:text-4xl font-semibold underline underline-offset-8 decoration-red-400">Edit Profile</p>
+                </nav>
+                <div class="h-3/4 w-full flex flex-col items-start justify-start gap-10 mt-10">
+                    <div id="info" class="h-1/6 flex items-center gap-5 justify-start w-full">
+                        <div class="h-full w-24 rounded-full overflow-hidden">
+                            <img class="h-full w-full object-cover origin-center" src="/images/uploads/<%= user.dp %>" alt="">
+                        </div>
+                        <form hidden action="/ch-dp" method="post" id="fileform">
+                            <input type="file" name="newdp" id="fileinput">
+                        </form>
+                        <div class="leading-6">
+                            <p class="font-semibold text-lg"><%= user.username %></p>
+                            <p class="text-blue-600 cursor-pointer" id="anchor">Change Profile Photo</p>
+                        </div>
+                    </div>
+                    <div id="form" class="w-full pl-6 h-1/3">
+                        <form class="h-full w-full flex flex-col items-center md:items-start justify-between" method="post" action="/update">
+                            <div id="bio" class="md:w-1/2 flex items-center justify-start gap-5">
+                                <p class="text-lg font-medium mr-1 ">Nickname</p>
+                                <input name="alias" class="rounded-lg border-2 h-full w-3/4 md:w-full p-2" placeholder="<%= user.nickname %>" id="nick">
+                            </div>
+                            <div id="bio" class="md:w-1/2 w-full flex items-center justify-start gap-5">
+                                <p class="text-lg font-medium mr-14 md:mr-14">Bio</p>
+                                <textarea name="bio" class="rounded-lg border-2 p-2 h-full w-full" id="bio"><%= user.about %></textarea>
+                            </div>
+                            <nav class="w-full md:w-1/2 md:text-center text-end">
+                                <a class="cursor-pointer py-2 px-5 rounded-full bg-red-400 md:mr-5 text-white" href="/profile"><button>Back</button></a>
+                                <input class="cursor-pointer py-1 px-4 rounded-full bg-red-400 text-white" type="submit">
+                            </nav>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.querySelector("#anchor").addEventListener("click", ()=>{
+                document.querySelector("#fileinput").click();
+            })
+            document.querySelector("#fileinput").addEventListener("change", ()=>{
+                document.querySelector("#fileform").submit();
+            })
+        </script>
+    </body>
+</html>

@@ -4,31 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= user.nickname %> - Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input {
+            word-wrap: break-word !important;
+            text-overflow: clip;
+            white-space: normal;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
-    <body>
-        <div class="container h-screen w-screen bg-white">
-            <div class="h-full px-6 md:px-10 py-5 w-screen md:mx-auto max-w-5xl ">
-                <div class="h-1/4 w-full flex items-start justify-between bg-red-50 md:w-4/5 md:mx-auto">
-                    <div class="mr-4 w-32 md:w-1/4 h-full py-1 px-0.5 flex items-center justify-center white">
-                        <div class="h-28 w-11/12 mb-4 overflow-hidden bg-slate-950 rounded-full md: mb-4 md:h-3/4 md:w-36">
-                            <img class="w-full h-full  object-cover" src="<%= userInfo.dp %>" alt="">
+    <body class="selection:bg-red-200" >
+        <div id="main" class="container h-screen w-screen relative bg-white">
+            <div id="overlay" class="hidden h-full w-full backdrop-brightness-75 absolute z-30"> 
+                <form id="imageform" class="h-full w-full flex items-center justify-center" action="/createpost" enctype="multipart/form-data" method="post">
+                    <div id="post-form" class="h-auto w-3/4 md:h-3/5 md:w-1/2 rounded-2xl overflow-hidden bg-white">
+                <nav class="h-10 w-full flex items-center justify-end border-b-2 border-red-400"> 
+                    <div class="flex h-full w-full md:w-7/12 items-center justify-between">
+                        <i id="post-close-md" class="ri-arrow-left-line cursor-pointer text-2xl ml-2 md:hidden"></i>
+                        <p class="capitalize font-semibold text-lg">Create new post</p> 
+                        <input type="submit" class="md:hidden no-underline cursor-pointer text-base mr-2 text-blue-500">
+                        <i id="post-close-md" class="hidden md:inline cursor-pointer ri-close-line text-2xl mr-2"></i>
+                    </div>
+                </nav>
+                        <div id="overlay-hero" class="flex flex-col items-center justify-center md:flex-row w-full h-full bg-white">
+                            <div id="md-image-preview" class="flex h-auto md:h-full w-full md:w-7/12 border-b-2 md:border-r-2 border-red-300 items-center justify-center">
+                                <div id="imagepreview" class="hidden h-21 w-full object-contain border-b-2 items-center justify-center">
+                                    <img class="h-full -translate-y-6 w-full object-contain object-top" src="" alt="">
+                                </div>
+                                <div id="md-choose" class="choose md:inline py-2 px-4  bg-red-500 md:mb-24 text-white rounded-md cursor-pointer">Choose Image</div>
+                            </div>
+                            <input type="file" accept="image/*" class="hidden" name="image" id="inputfile">
+                            <div class="md:inline h-full w-full md:w-5/12">
+                                <div id="info" class="hidden md:flex px-2 py-5 items-center mb-2 justify-start gap-3 w-full h-8">
+                                    <div id="dp" class="h-auto w-6 rounded-full overflow-hidden">
+                                        <img class="w-full h-full object-cover object-center" src="<%= user.dp %>" alt="">
+                                    </div>
+                                    <p><%= user.username %></p>
+                                </div>
+                                <div id="post-text" class="md:border-b-2 border-red-300 h-2/3 w-full">
+                                    <textarea  name="posttext" placeholder="Caption Goes Here" class="resize-none h-full w-full p-2 outline-none custom-word-wrap"></textarea>
+                                </div>                                
+                                <div class="hidden md:flex items-center justify-end p-3 w-full h-1/5  ">
+                                    <input type="submit" class="py-1 px-3 bg-red-500 text-white rounded-lg" name="" id="">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="w-7/12 h-full text-sm py-3 md:flex red-300 mx-auto md:ml-3 md:text-base">
-                        <div class="container">
-                            <p class="mb-1 font-bold text-base md:text-xl"><%= userInfo.nickname %></p>
-                            <p class="mb-2.5"><%= user.username %></p>
-                            <p class="mb-3"><%= userInfo.about %></p>
+                </form>
+            </div>
+            <div id="hero" class="h-full px-2 md:px-10 py-5 w-screen md:mx-auto max-w-5xl ">
+                <div id="intro" class="h-1/5 w-full border-b-2 flex items-start justify-between md:h-1/4 md:w-3/4 md:mx-auto">
+                    <div class="mr-4 w-32 relative md:w-1/5 h-full py-1 px-0.5 flex items-center justify-center white">
+                        <div class="h-24 group w-24 mb-4 overflow-hidden bg-slate-950 rounded-full md:h-3/4 md:w-36">
+                            <form hidden id="dpform" method="post" enctype="multipart/form-data" action="/ch-dp">
+                                <input type="file" name="newdp" id="dpinput">
+                            </form>
+                            <i id="pencil" class="ri-pencil-line md:group-hover:inline cursor-pointer absolute px-3 py-2 left-3/4 top-2/4 bg-slate-100 md:hidden shadow-lg rounded-full"></i>
+                            <img class="w-full h-full  object-cover" src="/images/uploads/<%= user.dp %>" alt="">
                         </div>
+                    </div>
+                    <div class="w-7/12 h-full text-sm text-slate-700 py-3 px-2 md:w-full mx-auto md:ml-3 md:text-base">
                         <div class="container">
-                            <a href="/create"><button class="bg-red-500 rounded-full mr-1 md:mr-3 py-1.5 px-4 text-white font-medium">Create</button></a>
-                            <a href="/edit"><button class="bg-red-500 rounded-full py-1.5 px-4 text-white font-medium">Edit Profile</button></a>
+                            <div class="flex items-start justify-between">
+                                <div>    
+                                    <p class="mb-1 font-bold text-base md:text-xl"><%= user.nickname %></p>
+                                    <p class="mb-2.5"><%= user.username %></p>
+                                </div>
+                                <div class="relative inline-block text-left md:hidden ">
+                                    <div>
+                                      <button type="button" class="rounded-sm bg-red-500 py-1.5 px-3 text-white font-medium" id="menu-button" aria-expanded="true" aria-haspopup="true"><i class="ri-menu-3-line"></i></button>
+                                    </div>
+                                    <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                      <div class="py-1" role="none">
+                                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                                        <a href="/edit" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Edit Profile</a>   
+                                        <a href="/logout" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Logout</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <a href="/logout"><button class="hidden bg-red-500 rounded-full py-1.5 px-4 text-white text-base md:inline">Logout</button></a>
+                            </div>
+                            <p class="" ><%= user.about %></p>
+                        </div>
+                        <div class="container md:mt-2 md:h-min ">
+                            <a href="/edit"><button class="hidden md:inline bg-red-500 rounded-full py-1.5 px-4 text-white font-medium">Edit Profile</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="postarea" class="py-3 w-screen -ml-2 h-auto md:h-auto md:w-11/12 md:ml-auto">
+                    <h3 class="font-semibold text-2xl text-blue-950 ml-2 mb-2" >Posts</h3>
+                    <% if(user.posts.length > 0) { user.posts.forEach((post)=>{ %>
+                        <div id="card" class="group bg-red-300 inline-block h-32 w-32 md:h-64 md:relative md:w-64">
+                            <div class="hidden md:group-hover:flex cursor-pointer items-center text-white justify-center gap-3 w-full h-full backdrop-brightness-75 border-l-indigo-700 absolute">
+                                <p><i class="ri-heart-fill"></i><%= post.likes.length %></p>
+                                <p><i class="ri-chat-3-fill"></i>0</p>
+                            </div>
+                            <img src="../images/uploads/<%= post.postImage %>" class="w-full h-full object-cover object-center" alt="">
+                        </div>
+                    <% })} %>
+                    <div id="plus" class="group inline-block h-32 w-32 md:h-64 relative md:w-64">
+                        <div class="flex cursor-pointer items-center text-black text-6xl justify-center gap-3 w-full h-full backdrop-brightness-95 border-l-indigo-700 absolute z-10">
+                            <i class="ri-add-circle-line"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script defer src="../javascripts/prscript.js"></script>
     </body>
 </html>

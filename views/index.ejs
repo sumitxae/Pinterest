@@ -3,28 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/login.css">
+    <title>Register - WakeMedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="container cont">
-        <div class="content">
-          <!-- pinterest logo -->
-          <img src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo" class="img1" />
-          <p class="header">Register to Explore</p>
-          <form action="/register" method="post">    
-            <input name="username" type="text" placeholder="Username" class="detail" /><br />
-            <input name="password" type="password" placeholder="Password" class="detail" />
-            <input name="email" type="email" placeholder="Email" class="detail" />
-            <button class="btn int">Sign Up</button>
+    <div class="container h-screen w-screen bg-slate-50 flex items-center justify-center">
+        <div class="h-4/6 w-11/12 md:w-3/12 mx-auto border-2 px-4 rounded-xl">
+          <div class="h-1/6 w-full flex items-center justify-center ">
+            <img class="h-full w-auto" src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo" class="img1" />
+          </div>
+          <p class="header mb-2 text-center text-2xl font-semibold">Register to Explore</p>
+           <form action="/register" class="w-full h-2/3 flex-col flex items-center " method="post">    
+            <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
+              <Label class="mb-2 text-lg font-semibold ">Username</Label>
+              <input name="username" type="text" placeholder="Username" class="rounded-xl pl-3 detail w-full outline-none h-full" />
+            </div>
+            <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
+              <Label class="mb-2 text-lg font-semibold ">Email</Label>
+              <input name="email" type="email" placeholder="Email" class="rounded-xl pl-3 detail w-full outline-none h-full" />
+            </div>
+            <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
+              <Label class="mb-2 text-lg font-semibold ">Password</Label>
+              <input name="password" type="password" placeholder="Password" class="rounded-xl pl-3 detail w-full outline-none h-full" />
+            </div>
+            <button class="px-4 text-lg rounded-full py-1 bg-red-500 text-white mt-2 cursor-pointer ">Sign Up</button>
           </form>
-          <p class="or">OR</p>
-          <footer>
-            <p>Already on Pinterest? <a href="/login">Login</a></p>
+          <p class="text-center font-semibold -mt-3">OR</p>
+          <footer class="text-center md:-mt-1 text-lg">
+            <p>Already on Pinterest? <a class="text-blue-500 cursor-pointer" href="/login">Login</a></p>
           </footer>
-        </div>
+        </div> 
       </div> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

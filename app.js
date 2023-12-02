@@ -10,6 +10,7 @@ var expressSession = require('express-session');
 var passport = require('passport');
 const { escape } = require('querystring');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo');
 
 var app = express();
 
@@ -21,8 +22,14 @@ app.use(flash());
 app.use(expressSession({
   resave: false,
   saveUninitialized: false,
-  secret: 'wakeupsid'
+  secret: 'wakeupsid',
+  store: MongoStore.create({
+    mongoUrl: 'mongodb://0.0.0.0:27017/wakeupsid', // Replace with your MongoDB connection string
+    collectionName: 'sessions', // Optional: specify the name of the collection to store sessions
+    ttl: 24 * 60 * 60, // Optiona: session TTL (time to live) in seconds
+}),
 }))
+
 
 app.use(passport.initialize());
 app.use(passport.session());
