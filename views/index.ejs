@@ -7,32 +7,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="container h-screen w-screen bg-slate-50 flex items-center justify-center">
-        <div class="h-4/6 w-11/12 md:w-3/12 mx-auto border-2 px-4 rounded-xl">
-          <div class="h-1/6 w-full flex items-center justify-center ">
-            <img class="h-full w-auto" src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo" class="img1" />
+    <div class="container h-screen w-screen bg-[url('/images/pbg.png')] flex items-center justify-center">
+      <div class="container h-screen brightness-75 w-screen bg-[url('/images/pbg.png')] flex items-center justify-center"></div> 
+      <div class="h-3/5 w-10/12 absolute bg-slate-100  shadow-2xl md:w-3/12 mx-auto border-2 px-4 rounded-xl">
+        <div class="h-1/6 w-full flex items-center justify-center ">
+          <img class="h-full w-auto" src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo" class="img1" />
+        </div>
+        <p class="header mb-2 text-center text-2xl font-semibold">Register to Explore</p>
+         <form action="/register" class="w-full h-2/3 flex-col flex items-center " method="post">    
+          <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
+            <Label class="mb-2 text-lg font-semibold ">Username</Label>
+            <input name="username" type="text" placeholder="Username" class="rounded-xl pl-3 detail w-full outline-none h-full" />
           </div>
-          <p class="header mb-2 text-center text-2xl font-semibold">Register to Explore</p>
-           <form action="/register" class="w-full h-2/3 flex-col flex items-center " method="post">    
-            <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
-              <Label class="mb-2 text-lg font-semibold ">Username</Label>
-              <input name="username" type="text" placeholder="Username" class="rounded-xl pl-3 detail w-full outline-none h-full" />
-            </div>
-            <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
-              <Label class="mb-2 text-lg font-semibold ">Email</Label>
-              <input name="email" type="email" placeholder="Email" class="rounded-xl pl-3 detail w-full outline-none h-full" />
-            </div>
-            <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
-              <Label class="mb-2 text-lg font-semibold ">Password</Label>
-              <input name="password" type="password" placeholder="Password" class="rounded-xl pl-3 detail w-full outline-none h-full" />
-            </div>
-            <button class="px-4 text-lg rounded-full py-1 bg-red-500 text-white mt-2 cursor-pointer ">Sign Up</button>
-          </form>
-          <p class="text-center font-semibold -mt-3">OR</p>
-          <footer class="text-center md:-mt-1 text-lg">
-            <p>Already on Pinterest? <a class="text-blue-500 cursor-pointer" href="/login">Login</a></p>
-          </footer>
-        </div> 
+          <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
+            <Label class="mb-2 text-lg font-semibold ">Email</Label>
+            <input name="email" type="email" placeholder="Email" class="rounded-xl pl-3 detail w-full outline-none h-full" />
+          </div>
+          <div class="h-1/4 w-full mb-2 flex flex-col items-start justify-center ">
+            <Label class="mb-2 text-lg font-semibold ">Password</Label>
+            <input name="password" type="password" placeholder="Password" class="rounded-xl pl-3 detail w-full outline-none h-full" />
+          </div>
+          <button class="px-4 text-lg rounded-full py-1 bg-red-500 text-white mt-2 cursor-pointer ">Sign Up</button>
+        </form>
+        <p class="text-center font-semibold -mt-3">OR</p>
+        <footer class="text-center md:-mt-1 text-lg">
+          <p>Already on Pinterest? <a class="text-blue-500 cursor-pointer" href="/login">Login</a></p>
+        </footer>
       </div> 
+    </div> 
   </body>
 </html>
+

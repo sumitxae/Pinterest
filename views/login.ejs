@@ -8,15 +8,18 @@
   </head>
   <body>
     <div class="container h-screen w-screen bg-slate-50 flex items-center justify-center">
-      <div class="h-3/4 w-11/12  md:w-3/12 mx-auto border-2 px-4 rounded-xl">
+      <div class="container h-screen brightness-75 w-screen bg-[url('/images/pbg.png')] flex items-center justify-center"></div> 
+      <div class="h-4/6 w-10/12 absolute bg-slate-100 shadow-2xl shadow-slate-500 md:h-3/4 md:w-3/12 mx-auto border-2 px-4 rounded-xl">
         <div class="h-1/6 w-full flex items-center justify-center ">
           <img class="h-full w-auto" src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo" class="img1" />
         </div>
         <p class="header mb-2 text-center text-2xl font-semibold">Login</p>
+        
+          <p class="font-semibold -mt-2  text-red-500"><%= err %></p>
          <form action="/login" class="w-full mb-3 h-2/5 flex-col flex items-center " method="post">    
           <div class="h-1/2 w-full mb-2 flex flex-col items-start justify-center ">
             <Label class="mb-2 text-lg font-semibold ">Username</Label>
-            <input name="email" type="text" placeholder="Username" class="rounded-xl pl-3 detail w-full outline-none h-full" />
+            <input name="username" type="text" placeholder="Username" class="rounded-xl pl-3 detail w-full outline-none h-full" />
           </div>
           <div class="h-1/2 w-full mb-2 flex flex-col items-start justify-center ">
             <Label class="mb-2 text-lg font-semibold ">Password</Label>

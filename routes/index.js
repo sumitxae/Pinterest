@@ -17,7 +17,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', (req, res, next) => {
-  res.render("login", { err: req.flash("error") });
+  var err = req.flash("error");
+  res.render("login",{err});
 })
 
 router.post('/register', (req, res, next) => {
